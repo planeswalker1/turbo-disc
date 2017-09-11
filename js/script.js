@@ -37,6 +37,17 @@ function onImageClick(event) {
   modalView.appendChild(image);
 }
 
+function hideModal() {
+  document.body.classList.remove('no-scroll');
+  modalView.classList.add('hidden');
+  modalView.innerHTML = '';
+  document.removeEventListener('keydown', nextImage);
+}
+
+function onModalClick() {
+  hideModal();
+}
+
 for (let i = 0; i < imageSourceList.length; i++) {
   const imageSrc = imageSourceList[i];
   const imageAlt = imageAltList[i];
@@ -44,3 +55,5 @@ for (let i = 0; i < imageSourceList.length; i++) {
   image.addEventListener('click', onImageClick);
   galleryView.appendChild(image);
 }
+
+modalView.addEventListener('click', onModalClick);
