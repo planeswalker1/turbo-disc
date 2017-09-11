@@ -27,9 +27,20 @@ function createImage(src, alt) {
   return image;
 }
 
+function onImageClick(event) {
+  const image = createImage(event.currentTarget.src, event.currentTarget.alt);
+
+  document.body.classList.add('no-scroll');
+  modalView.style.top = window.pageYOffset + 'px';
+  modalView.classList.remove('hidden');
+
+  modalView.appendChild(image);
+}
+
 for (let i = 0; i < imageSourceList.length; i++) {
   const imageSrc = imageSourceList[i];
   const imageAlt = imageAltList[i];
   const image = createImage(imageSrc, imageAlt);
+  image.addEventListener('click', onImageClick);
   galleryView.appendChild(image);
 }
